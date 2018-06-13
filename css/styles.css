@@ -34,9 +34,6 @@ button#roll-dice {
   outline: 0;
 }
 
-/*button#roll-dice:active {
-  border: none;
-}*/
 
 .btn-danger {
   float: left;
