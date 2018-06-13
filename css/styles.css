@@ -8,4 +8,22 @@ body {
   display: inline-block;
   border-radius: 7em;
   padding: 1%;
+  margin: 5%;
+}
+
+.btn-info {
+  float: right;
+}
+
+.btn-danger {
+  float: left;
+}
+
+.round-score {
+  border: 2px solid black;
+  width: 50%;
+  display: inline-block;
+  border-radius: 7em;
+  padding: 1%;
+  margin: 5%;
 }
