@@ -55,7 +55,7 @@ $(document).ready(function(){
     var roundScore = 0;
 
     //randomly decide who to start
-    turn = 2;//getRandomInt(2);
+    turn = getRandomInt(2);
 
     if(turn === 1){
       $('#user-turn').text(playerOne.name + " Turn");
@@ -82,6 +82,8 @@ $(document).ready(function(){
           // },2000);
         };
         playerTwo.totalScore += roundScore;
+        roundScore = 0;
+        $('#current-score').text(roundScore.toString());
         turn = 1;
         $('#user-turn').text(playerOne.name + " Turn");
         $('#p2-total').text(playerTwo.totalScore);
@@ -104,6 +106,36 @@ $(document).ready(function(){
         if(turn === 1){
           turn = 2;
           $('#user-turn').text(playerTwo.name + " Turn");
+          if(playerTwo.name === "Computer") {
+            counter = 0;
+            while(counter < 2){
+              // setTimeout(function(){
+                diceRoll = getRandomInt(6);
+                $('#dice-value').text(diceRoll.toString());
+                if(diceRoll === 1){
+                  roundScore = 0;
+                  $('#current-score').text(roundScore.toString());
+                  $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+                  turn = 1;
+                  counter = 2;
+                  $('#user-turn').text(playerOne.name + " Turn");
+                } else {
+                  counter +=1;
+                  roundScore += diceRoll;
+                  $('#current-score').text(roundScore.toString());
+                };
+              // },2000);
+            };
+            playerTwo.totalScore += roundScore;
+            turn = 1;
+            roundScore = 0;
+            $('#current-score').text(roundScore.toString());
+            $('#user-turn').text(playerOne.name + " Turn");
+            $('#p2-total').text(playerTwo.totalScore);
+            if(playerTwo.totalScore >= goal){
+              $('#user-turn').text(playerTwo.name + " WIN!!!");
+            };
+          };
         } else {
           turn = 1;
           $('#user-turn').text(playerOne.name + " Turn");
@@ -123,13 +155,44 @@ $(document).ready(function(){
       if(turn === 1){
         playerOne.totalScore += roundScore;
         turn = 2;
+        roundScore = 0;
+        $('#current-score').text(roundScore.toString());
         $('#user-turn').text(playerTwo.name + " Turn");
         $('#p1-total').text(playerOne.totalScore);
         if(playerOne.totalScore >= goal){
           $('#user-turn').text(playerOne.name + " WIN!!!");
         };
+        if(playerTwo.name === "Computer") {
+          counter = 0;
+          while(counter < 2){
+            // setTimeout(function(){
+              diceRoll = getRandomInt(6);
+              $('#dice-value').text(diceRoll.toString());
+              if(diceRoll === 1){
+                roundScore = 0;
+                $('#current-score').text(roundScore.toString());
+                $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+                turn = 1;
+                counter = 2;
+                $('#user-turn').text(playerOne.name + " Turn");
+              } else {
+                counter +=1;
+                roundScore += diceRoll;
+                $('#current-score').text(roundScore.toString());
+              };
+            // },2000);
+          };
+          playerTwo.totalScore += roundScore;
+          turn = 1;
+          roundScore = 0;
+          $('#current-score').text(roundScore.toString());
+          $('#user-turn').text(playerOne.name + " Turn");
+          $('#p2-total').text(playerTwo.totalScore);
+          if(playerTwo.totalScore >= goal){
+            $('#user-turn').text(playerTwo.name + " WIN!!!");
+          };
+        };
       } else {
-        
         playerTwo.totalScore += roundScore;
         turn = 1;
         $('#user-turn').text(playerOne.name + " Turn");
