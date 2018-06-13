@@ -31,11 +31,12 @@ button#roll-dice {
   float: right;
   background: rgba(255,255,255, 0);
   border: none;
+  outline: 0;
 }
 
-button#roll-dice:active {
+/*button#roll-dice:active {
   border: none;
-}
+}*/
 
 .btn-danger {
   float: left;
