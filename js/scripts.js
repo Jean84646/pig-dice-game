@@ -1,10 +1,7 @@
 // Business Logic
-function Player(name, goal){
+function Player(name){
   this.name = name;
-  this.goal = goal;
-  // this.roundScore = 0;
   this.totalScore = 0;
-  this.myTurn = false;
 }
 
 
@@ -28,25 +25,23 @@ $(document).ready(function(){
     var p2 = "";
     if(mode === "computer"){
       p2 = "computer";
-    }
+    } else {
+      p2 = "player2";
+    };
 
-    var playerOne = new Player("player1", goal);
-    var playerTwo = new Player(p2, goal);
+    var playerOne = new Player("player1");
+    var playerTwo = new Player(p2);
     var turn = 0;
     var diceRoll = 0;
     var roundScore = 0;
-debugger;
-    //randomly decide who to start
-    if(getRandomInt(2)-1){
-      playerOne.myTurn = true;
-    }
 
-    if(playerOne.myTurn){
+    //randomly decide who to start
+    turn = getRandomInt(2);
+
+    if(turn === 1){
       $('#user-turn').text(playerOne.name);
-      turn = 1;
     } else {
       $('#user-turn').text(playerTwo.name);
-      turn = 2;
     };
 
     $('button#roll-dice').click(function(){
@@ -54,6 +49,23 @@ debugger;
       $('#dice-value').text(diceRoll.toString());
       roundScore += diceRoll;
       $('#current-score').text(roundScore.toString());
+    });
+
+    $('button#end-turn').click(function(){
+      if(turn === 1){
+        playerOne.totalScore += roundScore;
+        turn = 2;
+        $('#user-turn').text(playerTwo.name);
+        $('#p1-total').text(playerOne.totalScore);
+      } else {
+        playerTwo.totalScore += roundScore;
+        turn = 1;
+        $('#user-turn').text(playerOne.name);
+        $('#p2-total').text(playerTwo.totalScore);
+      };
+      roundScore = 0;
+      $('#current-score').text(roundScore.toString());
+
     });
 
   });
