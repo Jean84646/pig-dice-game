@@ -25,5 +25,14 @@ body {
   display: inline-block;
   border-radius: 7em;
   padding: 1%;
-  margin: 5%;
+  margin: 5% 5% 0% 5%;
+}
+
+.dice-roll {
+  border: 2px solid black;
+  width: 50%;
+  display: inline-block;
+  border-radius: 7em;
+  padding: 1%;
+  margin: 5% 5% 0% 5%;
 }
