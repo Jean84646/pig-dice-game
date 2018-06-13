@@ -1,5 +1,5 @@
 h1 {
-  font-size: 50px;
+  font-size: 5em;
   font-weight: bold;
 }
 
@@ -9,6 +9,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  font-family: 'Bree Serif', serif;
 }
 
 .container {
@@ -17,7 +18,7 @@ body {
 }
 
 .total-score {
-  background-color: white;
+  background: rgba(255,255,255, 0.3);
   border: 2px solid black;
   width: 50%;
   display: inline-block;
@@ -26,8 +27,14 @@ body {
   margin: 5%;
 }
 
-.btn-info {
+button#roll-dice {
   float: right;
+  background: rgba(255,255,255, 0);
+  border: none;
+}
+
+button#roll-dice:active {
+  border: none;
 }
 
 .btn-danger {
@@ -35,7 +42,7 @@ body {
 }
 
 .round-score {
-  background-color: white;
+  background: rgba(255,255,255, 0.3);
   border: 2px solid black;
   width: 50%;
   display: inline-block;
@@ -45,7 +52,7 @@ body {
 }
 
 .dice-roll {
-  background-color: white;
+  background: rgba(255,255,255, 0.3);
   border: 2px solid black;
   width: 50%;
   display: inline-block;
@@ -56,4 +63,9 @@ body {
 
 span {
   font-size: 40px;
+}
+
+img {
+  width: 25%;
+  float: right;
 }

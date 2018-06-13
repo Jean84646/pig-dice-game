@@ -4,13 +4,15 @@
   <meta charset="utf-8">
   <title>Homepage</title>
   <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+  <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/jquery-3.3.1.js" charset="utf-8"></script>
   <script src="js/scripts.js" charset="utf-8"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Pig Dice</h1>
+    <h1 class="item animated shake">Pig Dice</h1>
     <p>An exiciting two player dice game. Each round, player roll dice to determine score.
       If it's a one, reset the score of the round to zero, player turn end.
       As long as the roll is not one, the player can choose to continue or end round.
@@ -85,7 +87,7 @@
         <br>
         <div class="row">
           <div class="col-md-6">
-            <button type="button" id ="roll-dice" class="btn btn-info">Roll Dice</button>
+            <button type="button" id ="roll-dice"><img src="img/dice.png" alt="dice"></button>
           </div>
           <div class="col-md-6">
             <button type="button" id="end-turn" class="btn btn-danger">End Turn</button>
