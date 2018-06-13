@@ -10,7 +10,9 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max)+1);
 }
 
+Player.prototype.rollDice = function(){
 
+}
 
 
 
@@ -45,9 +47,16 @@ $(document).ready(function(){
     };
 
     $('button#roll-dice').click(function(){
+      // this will disable the click button function for 500ms
+      document.getElementById('roll-dice').disabled = true;
+      setTimeout(function(){
+        document.getElementById('roll-dice').disabled = false;
+      },500);
+
       diceRoll = getRandomInt(6);
       if(diceRoll === 1){
         roundScore = 0;
+        $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         if(turn === 1){
           turn = 2;
           $('#user-turn').text(playerTwo.name + " Turn");
@@ -60,6 +69,7 @@ $(document).ready(function(){
       }
       $('#dice-value').text(diceRoll.toString());
       $('#current-score').text(roundScore.toString());
+
 
     });
 

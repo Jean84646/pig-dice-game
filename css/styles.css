@@ -1,3 +1,8 @@
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
 body {
   text-align: center;
 }
@@ -35,4 +40,8 @@ body {
   border-radius: 7em;
   padding: 1%;
   margin: 5% 5% 0% 5%;
+}
+
+span {
+  font-size: 40px;
 }
