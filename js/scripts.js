@@ -2,6 +2,8 @@
 function Player(name){
   this.name = name;
   this.totalScore = 0;
+  this.roundScore = 0;
+  this.myTurn = false;
 }
 
 
@@ -10,8 +12,23 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max)+1);
 }
 
-Player.prototype.rollDice = function(){
+Player.prototype.rollDice = function(turn){
+  var diceRoll = getRandomInt(6);
+  if(diceRoll === 1){
+    this.roundScore = 0;
+    $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    if(turn === 1){
+      turn = 2;
+      $('#user-turn').text(playerTwo.name + " Turn");
+    } else {
+      turn = 1;
+      $('#user-turn').text(playerOne.name + " Turn");
+    };
+  } else {
+    this.roundScore += diceRoll;
+  };
 
+  return turn;
 }
 
 
@@ -38,13 +55,40 @@ $(document).ready(function(){
     var roundScore = 0;
 
     //randomly decide who to start
-    turn = getRandomInt(2);
+    turn = 2;//getRandomInt(2);
 
     if(turn === 1){
       $('#user-turn').text(playerOne.name + " Turn");
     } else {
       $('#user-turn').text(playerTwo.name + " Turn");
+      if(playerTwo.name === "Computer") {
+        counter = 0;
+        while(counter < 2){
+          // setTimeout(function(){
+            diceRoll = getRandomInt(6);
+            $('#dice-value').text(diceRoll.toString());
+            if(diceRoll === 1){
+              roundScore = 0;
+              $('#current-score').text(roundScore.toString());
+              $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+              turn = 1;
+              counter = 2;
+              $('#user-turn').text(playerOne.name + " Turn");
+            } else {
+              counter +=1;
+              roundScore += diceRoll;
+              $('#current-score').text(roundScore.toString());
+            };
+          // },2000);
+        };
+        playerTwo.totalScore += roundScore;
+        turn = 1;
+        $('#user-turn').text(playerOne.name + " Turn");
+        $('#p2-total').text(playerTwo.totalScore);
+      };
     };
+
+
 
     $('button#roll-dice').click(function(){
       // this will disable the click button function for 500ms
@@ -66,7 +110,9 @@ $(document).ready(function(){
         };
       } else {
         roundScore += diceRoll;
-      }
+      };
+
+
       $('#dice-value').text(diceRoll.toString());
       $('#current-score').text(roundScore.toString());
 
@@ -83,6 +129,7 @@ $(document).ready(function(){
           $('#user-turn').text(playerOne.name + " WIN!!!");
         };
       } else {
+        
         playerTwo.totalScore += roundScore;
         turn = 1;
         $('#user-turn').text(playerOne.name + " Turn");
