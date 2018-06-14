@@ -50,14 +50,14 @@ $(document).ready(function(){
 
     var playerOne = new Player("Player ONE");
     var playerTwo = new Player(p2);
-    var turn = 0;
+    var playerTurn = 0;
     var diceRoll = 0;
     var roundScore = 0;
 
     //randomly decide who to start
-    turn = getRandomInt(2);
+    playerTurn = getRandomInt(2);
 
-    if(turn === 1){
+    if(playerTurn === 1){
       $('#user-turn').text(playerOne.name + " Turn");
     } else {
       $('#user-turn').text(playerTwo.name + " Turn");
@@ -71,7 +71,7 @@ $(document).ready(function(){
               roundScore = 0;
               $('#current-score').text(roundScore.toString());
               $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-              turn = 1;
+              playerTurn = 1;
               counter = 2;
               $('#user-turn').text(playerOne.name + " Turn");
             } else {
@@ -103,8 +103,8 @@ $(document).ready(function(){
       if(diceRoll === 1){
         roundScore = 0;
         $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-        if(turn === 1){
-          turn = 2;
+        if(playerTurn === 1){
+          playerTurn = 2;
           $('#user-turn').text(playerTwo.name + " Turn");
           if(playerTwo.name === "Computer") {
             counter = 0;
@@ -116,7 +116,7 @@ $(document).ready(function(){
                   roundScore = 0;
                   $('#current-score').text(roundScore.toString());
                   $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-                  turn = 1;
+                  playerTurn = 1;
                   counter = 2;
                   $('#user-turn').text(playerOne.name + " Turn");
                 } else {
@@ -127,7 +127,7 @@ $(document).ready(function(){
               // },2000);
             };
             playerTwo.totalScore += roundScore;
-            turn = 1;
+            playerTurn = 1;
             roundScore = 0;
             $('#current-score').text(roundScore.toString());
             $('#user-turn').text(playerOne.name + " Turn");
@@ -150,13 +150,18 @@ $(document).ready(function(){
     });
 
     $('button#end-turn').click(function(){
-      if(turn === 1){
+      document.getElementById('roll-dice').disabled = true;
+      setTimeout(function(){
+        document.getElementById('roll-dice').disabled = false;
+      },500);
+
+      if(playerTurn === 1){
         playerOne.totalScore += roundScore;
         $('#p1-total').text(playerOne.totalScore);
         if(playerOne.totalScore >= goal){
           $('#user-turn').text(playerOne.name + " WIN!!!");
         };
-        turn = 2;
+        playerTurn = 2;
         roundScore = 0;
         $('#current-score').text(roundScore.toString());
         $('#user-turn').text(playerTwo.name + " Turn");
@@ -171,7 +176,7 @@ $(document).ready(function(){
                 roundScore = 0;
                 $('#current-score').text(roundScore.toString());
                 $('.round-score').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-                turn = 1;
+                playerTurn = 1;
                 counter = 2;
                 $('#user-turn').text(playerOne.name + " Turn");
               } else {
@@ -182,7 +187,7 @@ $(document).ready(function(){
             // },2000);
           };
           playerTwo.totalScore += roundScore;
-          turn = 1;
+          playerTurn = 1;
           roundScore = 0;
           $('#current-score').text(roundScore.toString());
           $('#user-turn').text(playerOne.name + " Turn");
@@ -197,7 +202,7 @@ $(document).ready(function(){
         if(playerTwo.totalScore >= goal){
           $('#user-turn').text(playerTwo.name + " WIN!!!");
         };
-        turn = 1;
+        playerTurn = 1;
         $('#user-turn').text(playerOne.name + " Turn");
 
       };
